@@ -21,7 +21,7 @@ target_sources(h264bitstream
  
  target_include_directories(
   h264bitstream
-  PUBLIC h264_stream.h
+  PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}"
  )
 
 #g++ openRTSP.cpp playCommon.cpp -I . -I ../liveMedia/include -I ../liveMedia -I ../groupsock/include -I ../UsageEnvironment/include -I ../BasicUsageEnvironment/include ../liblive555.so -o openRTSP
