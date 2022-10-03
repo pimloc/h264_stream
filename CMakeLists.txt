@@ -15,7 +15,7 @@ list(REMOVE_ITEM SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/svc_split.c")
 list(REMOVE_ITEM SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/h264_avcc.c")
 list(REMOVE_ITEM SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/h264_slice_data.c")
 
-add_library(h264bitstream PUBLIC ${SOURCES})
+add_library(h264bitstream STATIC ${SOURCES})
 
 #g++ openRTSP.cpp playCommon.cpp -I . -I ../liveMedia/include -I ../liveMedia -I ../groupsock/include -I ../UsageEnvironment/include -I ../BasicUsageEnvironment/include ../liblive555.so -o openRTSP
 #LD_LIBRARY_PATH=../ ./openRTSP
