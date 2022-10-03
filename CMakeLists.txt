@@ -5,8 +5,6 @@ project(h264bitstream)
 SET(GCC_COVERAGE_COMPILE_FLAGS "-std=c99 -pedantic -Wall -W -Wshadow -Wwrite-strings -Wno-unused -g")
 add_definitions(${GCC_COVERAGE_COMPILE_FLAGS})
 
-include_directories(.)
-
 file(GLOB SOURCES "*.c")
 list(REMOVE_ITEM SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/h264_sei.in.c")
 list(REMOVE_ITEM SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/h264_slice_data.in.c")
