@@ -22,6 +22,7 @@ target_sources(h264bitstream
  )
  
  target_include_directories(
+  h264bitstream
   PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/h264_stream.h"
  )
 
