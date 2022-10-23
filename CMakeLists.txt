@@ -1,28 +1,29 @@
 cmake_minimum_required(VERSION 3.22)
 
-project(h264bitstream)
+project(
+  h264
+  VERSION 0.0.1
+  DESCRIPTION "Library to wirte NAL to h264l"
+  LANGUAGES C
+)
 
-SET(GCC_COVERAGE_COMPILE_FLAGS "-std=c99 -pedantic -Wall -W -Wshadow -Wwrite-strings -Wno-unused -g")
-add_definitions(${GCC_COVERAGE_COMPILE_FLAGS})
+add_subdirectory(src)
 
-file(GLOB SOURCES "*.c")
-list(REMOVE_ITEM SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/h264_sei.in.c")
-list(REMOVE_ITEM SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/h264_slice_data.in.c")
-list(REMOVE_ITEM SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/h264_stream.in.c")
-list(REMOVE_ITEM SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/svc_split.c")
-list(REMOVE_ITEM SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/h264_avcc.c")
-list(REMOVE_ITEM SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/h264_slice_data.c")
+install(
+  TARGETS BitStream EXPORT BitStreamTargets
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  RUNTIME DESTINATION bin
+  INCLUDES DESTINATION include
+)
 
-add_library(h264bitstream STATIC)
-target_sources(h264bitstream
-  PRIVATE ${SOURCES}
-  PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/h264_stream.h"
- )
- 
- target_include_directories(
-  h264bitstream
-  PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}"
- )
+#if external dependencies added then would need to generate the config cmake file
+install(
+  EXPORT BitStreamTargets
+  FILE BitStreamConfig.cmake
+  NAMESPACE H264::
+  DESTINATION lib/cmake/h264
+)
 
 #g++ openRTSP.cpp playCommon.cpp -I . -I ../liveMedia/include -I ../liveMedia -I ../groupsock/include -I ../UsageEnvironment/include -I ../BasicUsageEnvironment/include ../liblive555.so -o openRTSP
 #LD_LIBRARY_PATH=../ ./openRTSP
